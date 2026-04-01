@@ -42,13 +42,9 @@ Un accès visiteur est disponible pour consulter le dashboard en lecture seule :
 
 ## 🏗️ Architecture
 
-<img width="1440" height="1906" alt="image" src="https://github.com/user-attachments/assets/0c90e8f1-b257-49ff-9af4-5933e9866a7f" />
+![Architecture Dashboard PEA](architecture.svg)
 
-
-
-
-
-Le frontend (Streamlit) et le backend (Python) sont tous deux hébergés sur la même instance Oracle Cloud. Les données scrapées sont stockées sous forme de fichiers texte structurés, sans base de données.
+Le frontend (Streamlit) et le backend (Python `core/`) sont hébergés sur la même instance Oracle Cloud. Les données sont stockées sous forme de fichiers plats (`.txt`, `.csv`, `.json`), sans base de données.
 
 ---
 
@@ -58,7 +54,7 @@ L'accès au dashboard passe par une page de login protégée. Chaque utilisateur
 
 ### Rôles et permissions
 
-| Fonctionnalité | 👑 Admin | 📊 Analyst | 👁️ Viewer |
+| Fonctionnalité | 👑 Admin | 👤 User | 👁️ Viewer |
 |---|:---:|:---:|:---:|
 | Consulter le dashboard | ✅ | ✅ | ✅ |
 | Lien Boursorama sur les valeurs du portefeuille | ✅ | ✅ | ✅ |
@@ -80,7 +76,6 @@ La navigation dans Streamlit s'adapte dynamiquement au rôle détecté à la con
 La sécurité repose sur **trois couches successives et indépendantes** :
 
 **Couche 1 — Réseau (Nginx)**
-
 Seules les adresses IP présentes dans une liste blanche peuvent atteindre le serveur. Toute autre requête est rejetée avec un `403 Forbidden` avant même d'afficher la page de login. La whitelist est stockée dans un **fichier JSON** lu dynamiquement par Nginx, avec trois modes d'ajout selon le niveau de rôle cible :
 
 - **Admin** — adresse IP ajoutée **manuellement en dur** dans le fichier JSON directement sur le serveur, par l'administrateur système.
@@ -88,27 +83,22 @@ Seules les adresses IP présentes dans une liste blanche peuvent atteindre le se
 - **Viewer** — adresse IP ajoutée **automatiquement** lors de la première connexion valide, sans intervention humaine.
 
 **Couche 2 — Authentification**
-
 Les mots de passe sont stockés sous forme hachée (bcrypt, irréversible). Le formulaire de login renvoie un message d'erreur générique quel que soit le cas d'échec, afin d'éviter toute énumération des comptes existants. La session est maintenue côté serveur et expirée automatiquement.
 
 **Couche 3 — Autorisation par rôle**
-
 Chaque page et chaque action du backend vérifie le rôle de l'utilisateur connecté avant d'autoriser l'accès. Un viewer ne peut pas accéder aux données brutes même en manipulant l'URL. Toutes les variables sensibles (clés, credentials) sont stockées dans des fichiers de configuration non versionnés, jamais dans le code source.
 
 ---
 
 ## 🤖 Scraping & éthique
 
-La collecte de données est réalisée dans le respect des bonnes pratiques du scraping responsable :
+La collecte de données boursières est réalisée via **Playwright** (navigateur headless) qui se connecte à **Boursorama.com** pour télécharger les cours des valeurs du portefeuille. Les fichiers broker (positions, historique, ordres) sont synchronisés depuis la messagerie. Tout est stocké sous forme de fichiers plats (`.txt`, `.csv`, `.json`) sans base de données.
 
-- **Délai entre les requêtes** —
-- un temps d'attente aléatoire est appliqué entre chaque requête afin de ne pas saturer les serveurs.
-- 
-- **Pas de surcharge serveur** —
-- les collectes sont planifiées via cron avec un nombre de requêtes volontairement limité par session.
-- 
-- **Données à usage personnel** —
-- les données collectées sont utilisées uniquement à des fins de traitement interne pour un projet à but non lucratif. — les données collectées sont utilisées uniquement à des fins d'analyse interne et ne sont pas redistribuées.
+La collecte est réalisée dans le respect des bonnes pratiques du scraping responsable :
+
+- **Délai entre les requêtes** — un temps d'attente est respecté entre chaque collecte afin de ne pas saturer les serveurs.
+- **Pas de surcharge serveur** — les collectes sont planifiées via cron avec un nombre de requêtes volontairement limité par session.
+- **Données à usage personnel** — les données collectées sont utilisées uniquement à des fins de traitement interne pour un projet à but non lucratif.
 
 ---
 
