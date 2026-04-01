@@ -137,9 +137,14 @@ Chaque page et chaque action du backend vérifie le rôle de l'utilisateur conne
 
 La collecte de données est réalisée dans le respect des bonnes pratiques du scraping responsable :
 
-- **Délai entre les requêtes** — un temps d'attente aléatoire est appliqué entre chaque requête afin de ne pas saturer les serveurs.
-- **Pas de surcharge serveur** — les collectes sont planifiées via cron avec un nombre de requêtes volontairement limité par session.
-- **Données à usage personnel** — les données collectées sont utilisées uniquement à des fins de traitement interne pour un projet à but non lucratif. — les données collectées sont utilisées uniquement à des fins d'analyse interne et ne sont pas redistribuées.
+- **Délai entre les requêtes** —
+- un temps d'attente aléatoire est appliqué entre chaque requête afin de ne pas saturer les serveurs.
+- 
+- **Pas de surcharge serveur** —
+- les collectes sont planifiées via cron avec un nombre de requêtes volontairement limité par session.
+- 
+- **Données à usage personnel** —
+- les données collectées sont utilisées uniquement à des fins de traitement interne pour un projet à but non lucratif. — les données collectées sont utilisées uniquement à des fins d'analyse interne et ne sont pas redistribuées.
 
 ---
 
