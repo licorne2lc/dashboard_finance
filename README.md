@@ -42,6 +42,11 @@ Un accès visiteur est disponible pour consulter le dashboard en lecture seule :
 
 ## 🏗️ Architecture
 
+<img width="1440" height="1312" alt="image" src="https://github.com/user-attachments/assets/bde91789-022a-414a-ac58-3f9eaf8d013b" />
+
+
+
+
 ```
                         INTERNET
                            │
