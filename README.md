@@ -42,52 +42,9 @@ Un accès visiteur est disponible pour consulter le dashboard en lecture seule :
 
 ## 🏗️ Architecture
 
-<img width="1440" height="1312" alt="image" src="https://github.com/user-attachments/assets/bde91789-022a-414a-ac58-3f9eaf8d013b" />
+<img width="1440" height="1312" alt="image" src="https://github.com/user-attachments/assets/a4907f02-93fc-4380-ba73-29b35be06e94" />
 
 
-
-
-```
-                        INTERNET
-                           │
-                        HTTPS (:443) ← seul port exposé
-                           │
-   ╔═══════════════════════╪══════════════════════════════╗
-   ║  Oracle Cloud — VM.Standard.E2.1.Micro  (141.253.119.106)
-   ║  1 OCPU · 1 Go RAM · 50 Go SSD · 0 €/mois           ║
-   ║                       │                              ║
-   ║          ┌────────────▼────────────┐                 ║
-   ║          │      NGINX              │                 ║
-   ║          │   dataoz.[domaine]      │                 ║
-   ║          │   SSL Let's Encrypt     │                 ║
-   ║          │   Clé de sécurité       │                 ║
-   ║          │   Whitelist IP          │                 ║
-   ║          └──────┬──────────┬───────┘                 ║
-   ║                 │ interne  │ interne                  ║
-   ║      ┌──────────▼──┐  ┌────▼───────────────┐        ║
-   ║      │  FRONTEND    │  │  BACKEND            │        ║
-   ║      │              │  │                     │        ║
-   ║      │  Streamlit   │◄►│  Python             │        ║
-   ║      │  (interne)   │  │  Flask / FastAPI    │        ║
-   ║      │              │  │  (interne)          │        ║
-   ║      │ • Dashboard  │  │ • Auth & Rôles      │        ║
-   ║      │ • Graphiques │  │ • Traitement data   │        ║
-   ║      │ • Filtres    │  │ • API interne       │        ║
-   ║      └─────────────┘  └──────────┬──────────┘        ║
-   ║                                   │                   ║
-   ║                       ┌───────────▼──────────┐        ║
-   ║                       │  Stockage .txt        │        ║
-   ║                       │  raw / processed /    │        ║
-   ║                       │  archive              │        ║
-   ║                       └───────────▲──────────┘        ║
-   ║                                   │                   ║
-   ║                       ┌───────────┴──────────┐        ║
-   ║                       │  Scraper Python       │        ║
-   ║                       │  (cron — éphémère)    │        ║
-   ║                       │  requests · yfinance  │        ║
-   ║                       └──────────────────────┘        ║
-   ╚══════════════════════════════════════════════════════╝
-```
 
 Le frontend (Streamlit) et le backend (Python) sont tous deux hébergés sur la même instance Oracle Cloud. Les données scrapées sont stockées sous forme de fichiers texte structurés, sans base de données.
 
