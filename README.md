@@ -77,6 +77,7 @@ La navigation dans Streamlit s'adapte dynamiquement au rôle détecté à la con
 La sécurité repose sur **trois couches successives et indépendantes** :
 
 **Couche 1 — Réseau (Nginx)**
+
 Seules les adresses IP présentes dans une liste blanche peuvent atteindre le serveur. Toute autre requête est rejetée avec un `403 Forbidden` avant même d'afficher la page de login. La whitelist est stockée dans un **fichier JSON** lu dynamiquement par Nginx, avec trois modes d'ajout selon le niveau de rôle cible :
 
 - **Admin** — adresse IP ajoutée **manuellement en dur** dans le fichier JSON directement sur le serveur, par l'administrateur système.
@@ -84,9 +85,11 @@ Seules les adresses IP présentes dans une liste blanche peuvent atteindre le se
 - **Viewer** — adresse IP ajoutée **automatiquement** lors de la première connexion valide, sans intervention humaine.
 
 **Couche 2 — Authentification**
+
 Les mots de passe sont stockés sous forme hachée (bcrypt, irréversible). Le formulaire de login renvoie un message d'erreur générique quel que soit le cas d'échec, afin d'éviter toute énumération des comptes existants. La session est maintenue côté serveur et expirée automatiquement.
 
 **Couche 3 — Autorisation par rôle**
+
 Chaque page et chaque action du backend vérifie le rôle de l'utilisateur connecté avant d'autoriser l'accès. Un viewer ne peut pas accéder aux données brutes même en manipulant l'URL. Toutes les variables sensibles (clés, credentials) sont stockées dans des fichiers de configuration non versionnés, jamais dans le code source.
 
 ---
