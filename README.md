@@ -8,18 +8,6 @@ Le tout est déployé sur **Oracle Cloud Free Tier**, accessible via HTTPS sous 
 
 🔗 **[https://dashboard.dataoz.fr](https://dashboard.dataoz.fr)**
 
----
-
-## 🖥️ Aperçu
-
-### Page de connexion
-![Login](screenshot_login.png)
-
-### Vue Utilisateur
-![User](screenshot_user.png)
-
-### Vue Visiteur
-![Guest](screenshot_guest.png)
 
 ---
 
