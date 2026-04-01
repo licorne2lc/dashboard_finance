@@ -1,4 +1,4 @@
-# 📈 Dashboard PEA — Veille Financière & Boursière
+# 📈 Déploiement Dashboard — Veille Financière & Boursière
 
 Dashboard de veille financière destiné aux **particuliers** souhaitant suivre leur portefeuille boursier et piloter leur situation financière personnelle. Il permet de visualiser l'évolution de ses investissements en temps réel, de consulter l'historique de ses opérations broker, et d'accéder à des outils de simulation financière — comme par exemple le calcul de remboursement d'un crédit immobilier (montant, durée, taux, mensualités) directement depuis le dashboard.
 
