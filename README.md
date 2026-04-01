@@ -15,9 +15,6 @@ Le tout est déployé sur **Oracle Cloud Free Tier**, accessible via HTTPS sous 
 ### Page de connexion
 ![Login](screenshot_login.png)
 
-### Vue Administrateur
-![Admin](screenshot_admin.png)
-
 ### Vue Utilisateur
 ![User](screenshot_user.png)
 
