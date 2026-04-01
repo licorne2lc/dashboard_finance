@@ -32,7 +32,8 @@ Un accès visiteur est disponible pour consulter le dashboard en lecture seule :
 
 ## 🏗️ Architecture
 
-<img width="1440" height="1906" alt="image" src="https://github.com/user-attachments/assets/ad79555b-468d-4236-83a5-da85ef862de7" />
+<img width="749" height="991" alt="image" src="https://github.com/user-attachments/assets/9f8fc2ac-c6d0-452e-aaf4-dabb53569c8c" />
+
 
 
 Le frontend (Streamlit) et le backend (Python `core/`) sont hébergés sur la même instance Oracle Cloud. Les données sont stockées sous forme de fichiers plats (`.txt`, `.csv`, `.json`), sans base de données.
