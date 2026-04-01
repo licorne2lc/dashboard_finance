@@ -15,6 +15,9 @@ Le tout est déployé sur **Oracle Cloud Free Tier**, accessible via HTTPS sous 
 
 ## 🔑 Accès de démonstration
 
+<img width="253" height="344" alt="image" src="https://github.com/user-attachments/assets/4e04696a-9bc0-4a20-8d9d-73ddbd685cf7" />
+
+
 Un accès visiteur est disponible pour consulter le dashboard en lecture seule :
 
 | Rôle | Identifiant | Mot de passe |
