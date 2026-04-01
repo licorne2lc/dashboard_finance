@@ -42,7 +42,8 @@ Un accès visiteur est disponible pour consulter le dashboard en lecture seule :
 
 ## 🏗️ Architecture
 
-![Architecture Dashboard PEA](architecture.svg)
+<img width="1440" height="1906" alt="image" src="https://github.com/user-attachments/assets/ad79555b-468d-4236-83a5-da85ef862de7" />
+
 
 Le frontend (Streamlit) et le backend (Python `core/`) sont hébergés sur la même instance Oracle Cloud. Les données sont stockées sous forme de fichiers plats (`.txt`, `.csv`, `.json`), sans base de données.
 
